@@ -1,11 +1,14 @@
 const GITHUB_API_URL = 'https://api.github.com/users/';
 
+let $players = $('#comparison').children('.player');
 let $sendButton = $('#sendButton');
 let firstNickname, secondNickname;
 
 let comparatorObject = {
     firstUpdated: false,
     secondUpdated: false,
+    firstUser: 0,
+    secondUser: 0,
     winner: 0   //-1 => first, 0 => tie, 1 => seconod
 };
 
@@ -31,32 +34,44 @@ $sendButton.on('click', (e) => {
     // document.querySelector('.container').appendChild(newEl);
     // ******************
 
-    appendScriptCode(firstNickname);
-    appendScriptCode(secondNickname);
+    if (firstNickname !== "")
+    {
+        appendScriptCode(firstNickname);
+    }
+    if (secondNickname !== "")
+    {
+        appendScriptCode(secondNickname);
+    }
     
 });
 
 function updateUserPosition(userJSON)
 {
     let user = getUser(userJSON);
-
-    let $players = $('#comparison').children(); //.player
     let player;
 
     if (comparatorObject.firstUpdated && comparatorObject.secondUpdated)
     {
         comparatorObject.firstUpdated = comparatorObject.secondUpdated = false;
+        comparatorObject.firstUser = comparatorObject.secondUser = 0;
     }
 
     if (!comparatorObject.firstUpdated)
     {
         player = $players.get(0); //.childNodes
         comparatorObject.firstUpdated = true;
+        comparatorObject.firstUser = user;
     }
     else if(!comparatorObject.secondUpdated)
     {
         player = $players.get(1); //.childNodes
         comparatorObject.secondUpdated = true;
+        comparatorObject.secondUpdated = user;
+
+        comparatorObject.winner = determineWinner();
+        markWinner();
+
+        $('#vs').css('transform', 'translate(-48%, -210%)');
     }
     // alert($players.get(0).childElementCount);
     
@@ -71,7 +86,6 @@ function updateUserPosition(userJSON)
     $descriptionEl.html(description);
 
     // document.getElementsByClassName('nickname')[0].innerHTML = user.login;
-
 
 }
 
@@ -88,4 +102,42 @@ function appendScriptCode(nickname)
 {
     let scriptCode = GITHUB_API_URL + nickname + '?callback=updateUserPosition';
     $('body').append('<script src="' + scriptCode + '"></script>');
+}
+
+function determineWinner()
+{
+    let firstScore = comparatorObject.firstUser.publicRepos + comparatorObject.firstUser.gists;
+    let secondScore = comparatorObject.secondUser.publicRepos + comparatorObject.secondUser.gists;
+    
+    if (firstScore > secondScore)
+    {
+        return -1;
+    }
+    else if (firstScore < secondScore)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+//TODO
+function markWinner()
+{
+    let winnerEl;
+
+    if (comparatorObject.winner === 1)
+    {
+        winnerEl = $players.get(1);
+    }
+    else if (comparatorObject.winner == -1)
+    {
+        winnerEl = $players.get(0);
+    }
+    // alert($(winnerEl).text());
+    $(winnerEl).find('h2.nickname').addClass('winner');
+
+    
 }

@@ -117,6 +117,13 @@ body
     box-shadow: 10px 10px 0 rgba(87, 104, 103, .5);
 }
 
+.winner
+{
+    background-color: #FFAE37;
+    padding: 5px;
+    color: white;
+}
+
 .description
 {
     font-size: 1.4em;
@@ -130,7 +137,7 @@ body
     left: -3%; */
     /* left: 50%;
     top: 50%; */
-    -webkit-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-45%, -180%);
     transform: translate(-45%, -180%);
     /* transform: translate(-48%, -210%); */
 }
