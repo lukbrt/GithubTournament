@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body
+{
+    font-family: 'Raleway', sans-serif;
+    background-image: url(../res/leaves-pattern.png);
+}
+
+/* h1, h2, h3, h4
+{
+    font-family: 'Raleway', sans-serif;
+
+} */
+
+#logo
+{
+    padding: 15px 0;
+    margin-bottom: 30px;
+    text-align: center;
+    /* background-color: #FFD646; */
+    color: #fff;
+    /* rgb(255, 244, 231); */
+}
+
+.container
+{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+#comparison
+{
+    padding-top: 10px;
+    /* border-top: 3px dashed rgb(223, 223, 223); */
+    margin-top: 50px;
+}
+
+.right-separator
+{
+    border-right: 2px dashed rgb(31, 31, 31);
+}
+
+.circle
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: aquamarine;
+    background-image: url(../res/octopus-unknown.svg);
+    background-size: cover;
+    margin-bottom: 10px;
+
+    padding: 5px;
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 15px 5px rgba(65, 65, 65, .1),
+                -15px -5px rgba(173, 173, 173, 0.1);
+                /* -15px -5px rgba(0, 182, 9, 0.1),
+                -5px 15px rgba(0, 255, 213, 0.1),
+                15px -5px rgba(248, 0, 62, 0.1); */
+}
+
+/* .circle::before
+{
+    content: '';
+    position: absolute;
+    left: 33%;
+    background-color: transparent;
+    width: 204px;
+    height: 204px;
+    border-radius: 50%;
+    border: 2px dotted rgb(0, 100, 62);;
+
+} */
+
+.player
+{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}
+
+.player::before
+{
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 90%;
+    height: 105%;
+    margin-right: -10px;
+    background-color: rgb(223, 240, 255);
+    border-right: 5px solid rgba(249, 126, 112, .1);
+    border-top: 3px solid rgba(249, 126, 112, .3);
+    transform: skewX(-15deg);
+    z-index: -1;
+    opacity: 1;
+}
+
+ .player:after 
+ {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: -5%;
+    width: 90%;
+    height: 100%;
+    margin-right: -10px;
+    background-color: rgb(0, 136, 255);
+    /* border-right: 4px solid rgba(0, 44, 82, .5);
+    border-top: 3px solid rgba(0, 44, 82, .5); */
+    transform: skewX(-15deg);
+    z-index: -2;
+    opacity: 0.4;
+    box-shadow: 10px 10px 0 rgba(87, 104, 103, .5);
+}
+
+.description
+{
+    font-size: 1.4em;
+}
+
+#vs
+{
+    position: relative;
+    margin: 0 auto;
+    /* top: -180px;
+    left: -3%; */
+    /* left: 50%;
+    top: 50%; */
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-45%, -180%);
+    /* transform: translate(-48%, -210%); */
+}
+
+#vs p
+{
+    font-size: 3em;
+    background-color: aquamarine;
+    border-radius: 50%;
+    padding: 0.1em 0.3em;
+    border-right: 3px solid rgba(0, 92, 46, .2);
+    border-top: 3px solid rgba(0, 92, 46, .2);
+}
+
+.wave {
+    text-align: center;
+    background: linear-gradient(to bottom, #FFD646, chocolate);
+    height: 90px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.wave::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: repeat-x;
+    height: 10px;
+    background-size: 20px 20px;
+    background-image: radial-gradient(circle at 10px -5px, transparent 12px, #f2f2f2 13px);
+}
+
+.wave::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: repeat-x;
+    height: 15px;
+    background-size: 40px 20px;
+    background-image: radial-gradient(circle at 10px 15px, #f2f2f2 12px, transparent 13px);
+}
+
+#sendButton
+{
+    font-size: 1.4em;
+    height: 2em;
+    box-shadow: 2px 4px 0 rgb(228, 255, 129),
+                4px 6px 0 #FFD646;
+    opacity: .8;
+        /* content: "";
+        position: absolute;
+        top:  */
+    transition: all 0.5s ease-in;
+}
+
+#sendButton:hover
+{
+    box-shadow: 1px 1px 0 #fff;
+}
+
+input[type=text]
+{
+    font-size: 1.4em;
+    height: 2em;
+}
