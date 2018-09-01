@@ -160,5 +160,5 @@ function reset()
         let $currentEl = $(this);
         if ($currentEl.hasClass('winner'))
             $currentEl.removeClass('winner');
-    })
+    });
 }

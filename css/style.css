@@ -6,11 +6,11 @@ body
     background-image: url(../res/leaves-pattern.png);
 }
 
-/* h1, h2, h3, h4
+h1, h2, h3, h4
 {
     font-family: 'Raleway', sans-serif;
 
-} */
+}
 
 #logo
 {
@@ -149,13 +149,8 @@ body
 {
     position: relative;
     margin: 0 auto;
-    /* top: -180px;
-    left: -3%; */
-    /* left: 50%;
-    top: 50%; */
     -webkit-transform: translate(-45%, -180%);
     transform: translate(-45%, -180%);
-    /* transform: translate(-48%, -210%); */
 }
 
 #vs p
@@ -207,9 +202,6 @@ body
     box-shadow: 2px 4px 0 rgb(228, 255, 129),
                 4px 6px 0 #FFD646;
     opacity: .8;
-        /* content: "";
-        position: absolute;
-        top:  */
     transition: all 0.5s ease-in;
 }
 
@@ -229,7 +221,6 @@ input[type=text]
 
     #vs
     {
-        /* flex: 0; */
         position: absolute;
         top: 68%;
         left:50%;
