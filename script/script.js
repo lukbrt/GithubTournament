@@ -27,12 +27,6 @@ $sendButton.on('click', (e) => {
     $users = $('.form-row input');
     firstNickname = $users.get(0).value;
     secondNickname = $users.get(1).value;
-    // alert(firstNickname + "   " + secondNickname);
-    // let newEl = document.createElement("p");
-    // let txt = firstNickname + "    " + secondNickname;
-    // newEl.appendChild(document.createTextNode(txt));
-    // document.querySelector('.container').appendChild(newEl);
-    // ******************
 
     if (firstNickname !== "")
     {
@@ -42,6 +36,14 @@ $sendButton.on('click', (e) => {
     {
         appendScriptCode(secondNickname);
     }
+
+    let $form = $('.form-row');
+    let $compareEl = $('#comparison');
+    $form.hide().fadeOut(300);
+    $compareEl.hide().slideDown(500, function () {
+        $(this).fadeIn(400);
+        $form.delay(500).fadeIn(800);
+    });
     
 });
 
@@ -54,6 +56,8 @@ function updateUserPosition(userJSON)
     {
         comparatorObject.firstUpdated = comparatorObject.secondUpdated = false;
         comparatorObject.firstUser = comparatorObject.secondUser = 0;
+
+        reset();
     }
 
     if (!comparatorObject.firstUpdated)
@@ -61,19 +65,19 @@ function updateUserPosition(userJSON)
         player = $players.get(0); //.childNodes
         comparatorObject.firstUpdated = true;
         comparatorObject.firstUser = user;
+        $('#vs').css('transform', 'translate(-45%, -180%)');
     }
     else if(!comparatorObject.secondUpdated)
     {
         player = $players.get(1); //.childNodes
         comparatorObject.secondUpdated = true;
-        comparatorObject.secondUpdated = user;
+        comparatorObject.secondUser = user;
 
         comparatorObject.winner = determineWinner();
         markWinner();
 
         $('#vs').css('transform', 'translate(-48%, -210%)');
     }
-    // alert($players.get(0).childElementCount);
     
     let $avatarEl = $(player).find('div.circle');
     $avatarEl.css({backgroundImage: 'url(' + user.avatar + ')'});
@@ -84,9 +88,6 @@ function updateUserPosition(userJSON)
     description += '<strong>Gists</strong>: ' + user.gists + '<br>';
     description += '<strong>Location</strong>: ' + user.loc;
     $descriptionEl.html(description);
-
-    // document.getElementsByClassName('nickname')[0].innerHTML = user.login;
-
 }
 
 function getUser(userJSON)
@@ -94,8 +95,6 @@ function getUser(userJSON)
     // let privReposAmount = (typeof userJSON.data.total_private_repos === "undefined") ? 0 : userJSON.data.total_private_repos;
     let user = new User(userJSON.data.login, userJSON.data.avatar_url, userJSON.data.public_repos, userJSON.data.public_gists, userJSON.data.location);
     return user;
-    // console.log(user);
-    // console.log(userJSON.data);
 }
 
 function appendScriptCode(nickname)
@@ -108,7 +107,6 @@ function determineWinner()
 {
     let firstScore = comparatorObject.firstUser.publicRepos + comparatorObject.firstUser.gists;
     let secondScore = comparatorObject.secondUser.publicRepos + comparatorObject.secondUser.gists;
-    
     if (firstScore > secondScore)
     {
         return -1;
@@ -127,17 +125,40 @@ function determineWinner()
 function markWinner()
 {
     let winnerEl;
+    $vs = $('#vs p');
 
     if (comparatorObject.winner === 1)
     {
         winnerEl = $players.get(1);
+        $vs.css({
+            backgroundImage: 'linear-gradient(105deg, aquamarine 0%, aquamarine 50%, #FFAE37 50%, #FFAE37 100%)'
+        });
     }
     else if (comparatorObject.winner == -1)
     {
         winnerEl = $players.get(0);
+        $vs.css({
+            backgroundImage: 'linear-gradient(105deg, #FFAE37 0%, #FFAE37 50%, aquamarine 50%, aquamarine 100%)'
+        });
+        
     }
-    // alert($(winnerEl).text());
+
     $(winnerEl).find('h2.nickname').addClass('winner');
 
-    
+    $vs.css({border: 'none'});
+}
+
+function reset() 
+{
+    $('#vs p').css({
+        borderRight: '3px solid rgba(0, 92, 46, .2)',
+        borderTop: '3px solid rgba(0, 92, 46, .2)',
+        backgroundImage: 'none'
+    });
+
+    $('h2.nickname').each(function(i) {
+        let $currentEl = $(this);
+        if ($currentEl.hasClass('winner'))
+            $currentEl.removeClass('winner');
+    })
 }
