@@ -22,12 +22,16 @@ h1, h2, h3, h4
     /* rgb(255, 244, 231); */
 }
 
-.container
+.containerBox
 {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left:50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    /* display: flex; */
+    width: 60%;
+    margin: auto;
+    margin-top: 100px;
 }
 
 #comparison
@@ -216,20 +220,29 @@ input[type=text]
     height: 2em;
 }
 
-@media screen and (max-width: 1024px)
+@media screen and (max-width: 1400px)
+{
+    .containerBox
+    {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1000px)
 {
 
     #vs
     {
-        position: absolute;
+        display: none;
+        /* position: relative;
         top: 68%;
         left:50%;
-        transform: translateY(-200%);
+        transform: translateY(-430%); */
     }
 
-    .container
+    .containerBox
     {
-        margin-top: 20%;
+        margin-top: 30px;
     }
 
     .player:before, .player:after, .player

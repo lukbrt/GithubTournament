@@ -41,6 +41,12 @@ $sendButton.on('click', (e) => {
     let $compareEl = $('#comparison');
     $form.hide().fadeOut(300);
     $compareEl.hide().slideDown(500, function () {
+        // $('.circle').each(function(i){
+        //     $(this).css('opacity', 0).delay(300).css({
+        //         opacity: 1,
+        //         transform: 'rotate(360)'
+        //     });
+        // });
         $(this).fadeIn(400);
         $form.delay(500).fadeIn(800);
     });
